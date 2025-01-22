@@ -29,14 +29,28 @@ while True:
     if user_input == cn.GET_BY_TITLE_OPTION:
         title = user_interface.get_user_input("Input title: ")
         try:
-            films = sakila_service.get_films_by_title(title)
+            films = sakila_service.get_films_by_title(title.lower())
             user_interface.print_films(films)
         except Exception as ex:
             user_interface.print_error(str(ex))
     elif user_input == cn.GET_BY_GENRE_OPTION:
-        genre = user_interface.get_user_input("Input genre: ")
         try:
-            films = sakila_service.get_films_by_genre(genre)
+            genres = sakila_service.get_genres()
+            user_interface.print_genres(genres)
+        except Exception as ex:
+            user_interface.print_error(str(ex))
+            continue
+        genre_id = user_interface.get_user_input("Input genre id: ")
+        try:
+            genre_name = None
+            for genre in genres:
+                if genre["category_id"] == int(genre_id):
+                    genre_name = genre["name"]
+                    break
+            if not genre_name:
+                user_interface.print_error("This genre number is not exist!")
+                continue
+            films = sakila_service.get_films_by_genre(int(genre_id), genre_name)
             user_interface.print_films(films)
         except Exception as ex:
             user_interface.print_error(str(ex))
@@ -45,6 +59,12 @@ while True:
         try:
             films = sakila_service.get_films_by_year(int(year))
             user_interface.print_films(films)
+        except Exception as ex:
+            user_interface.print_error(str(ex))
+    elif user_input == cn.GET_TOP_10_SEARCH_QUERIES:
+        try:
+            search_queries = sakila_service.get_top_10_search_queries()
+            user_interface.print_search_queries(search_queries)
         except Exception as ex:
             user_interface.print_error(str(ex))
     elif user_input == cn.EXIT_OPTION:
