@@ -119,7 +119,7 @@ class SakilaService:
 
         Parameters:
         - key (str): The search key (e.g., title, genre name, or year).
-        - query_type (int): The type of query (e.g., title, genre, or year).
+        - query_type (int): The type of query.
 
         Raises:
         - DataBaseConnectionError: If the database connection is not established.

@@ -11,7 +11,7 @@ MENU_ITEMS = [
 
 class UserInterface:
     """
-    A class to handle the user interface for a film management application.
+    A class to handle the user interface for a film searching application.
     Provides methods for displaying menus, films, genres, and search queries,
     as well as handling user input.
     """
@@ -74,7 +74,7 @@ class UserInterface:
         Prints the details of a single film.
 
         Parameters:
-        - film (dict): A dictionary containing film details (e.g., title).
+        - film (dict): A dictionary containing film details.
         """
         print(film["title"])
 
@@ -94,7 +94,7 @@ class UserInterface:
 
         Parameters:
         - search_queries (list): A list of dictionaries, where each dictionary contains
-          query details such as type, key, and amount.
+          query details.
         """
         for query in search_queries:
             line = "Query by "
